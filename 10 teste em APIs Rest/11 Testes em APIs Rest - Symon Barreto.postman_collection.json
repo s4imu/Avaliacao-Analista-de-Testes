@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "0a135943-03cc-4abb-9f14-73cab4da6ec7",
+		"name": "11 Testes em APIs Rest - Symon Barreto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40264567"
+	},
+	"item": [
+		{
+			"name": "Criar um produto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Functional Tests\r",
+							"pm.test(\"Status Code test\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Name test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.nome).to.be.equals(pm.environment.get(\"nome_produto\"))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Price test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.preco).to.be.equals(pm.environment.get(\"preco_produto\"))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Quantity test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.quantidade).to.be.equals(parseInt(pm.environment.get(\"quantidade_produto\")))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Category test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.categoria).to.be.equals(parseInt(pm.environment.get(\"categoria_produto\")))\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nome\": \"{{nome_produto}}\",\r\n\"preco\": {{preco_produto}},\r\n\"quantidade\": {{quantidade_produto}},\r\n\"categoria\": {{categoria_produto}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/produtos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtar um produto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Functional Tests\r",
+							"pm.test(\"Status Code test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Name test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.nome).to.be.equals(pm.environment.get(\"nome_produto\"))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Price test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.preco).to.be.equals(pm.environment.get(\"preco_produto\"))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Quantity test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.quantidade).to.be.equals(parseInt(pm.environment.get(\"quantidade_produto\")))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product Category test\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson.categoria).to.be.equals(parseInt(pm.environment.get(\"categoria_produto\")))\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nome\": \"Mouse\",\r\n\"preco\": \"3.00\",\r\n\"quantidade\": 2,\r\n\"categoria\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/produtos/1/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"produtos",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
