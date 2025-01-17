@@ -1,22 +1,25 @@
-#!/bin/bash
-
 # a. Crie uma pasta com seu nome
+echo "Criando pasta: symon-barreto..."
 mkdir -p "symon-barreto"
 
-# b. Dentro da pasta com seu nome crie uma pasta com o nome “resultado”
-mkdir -p "symon-barreto/resultado"
+# b. Dentro da pasta com seu nome crie uma pasta com o nome "resultado"
+echo "Criando pasta: resultado dentro da pasta: symon-barreto..."
+mkdir -p symon-barreto/resultado
 
-# c. Baixe o arquivo hospedado
-wget -q -O "symon-barreto/zip.zip" "https://vanilton.net/v1/download/zip.zip"
+# c. Baixe o arquivo hospedado: https://vanilton.net/v1/download/zip.zip
+echo "Baixando o arquivo zip..."
+wget -O symon-barreto/zip.zip  https://vanilton.net/v1/download/zip.zip
 
 # d. Descompacte-o na raiz da pasta com seu nome
-unzip -q "symon-barreto/zip.zip" -d "symon-barreto"
+echo "Descompactando arquivo na raiz da pasta symon-barreto..."
+unzip symon-barreto/zip.zip -d symon-barreto
 
-# e. Mova somente os arquivos descompactados (excluindo pastas específicas) para a pasta “resultado”
-find "symon-barreto" -mindepth 1 -maxdepth 1 ! -name "zip.zip" ! -name "resultado" -exec mv -t "symon-barreto/resultado" {} +
+# e. Mova somente os arquivos descompactados (excluindo pastas específicas) para a pasta "resultado"
+echo "Movendo arquivos descompactados para a pasta resultado..."
+mv symon-barreto/readme.md symon-barreto/resultado/
 
 # f. Remova o arquivo baixado
-rm -f "symon-barreto/zip.zip"
+echo "Excluindo arquivo baixado..."
+rm -f symon-barreto/zip.zip
 
-# Exibir mensagem de conclusão
-echo "Processo concluído! Arquivos descompactados estão em symon-barreto/resultado"
+echo "Concluído! Arquivos descompactados se encontram em symon-barreto/resultado"
